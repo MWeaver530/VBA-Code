@@ -78,3 +78,16 @@ function ReadCollection (lrow as long, 1 as string, c2 as string) as collection
   set ReadCollection = col
 end function
 
+sub ClearQuickCompareSheet()
+  dim lrow as long
+  dim lrow2 as long
+  
+  lrow = ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Row
+  lrow2 = ActiveSheet.Cells(Rows.Count, 3).End(xlUp).Row
+
+  if lrow2 > lrow then lrow = lrow2
+
+  for x = 2 to lrow
+    range("A" & x).EntireRow.ClearContents
+  next
+end sub
